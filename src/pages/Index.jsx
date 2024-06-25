@@ -1,4 +1,5 @@
 import { Container, VStack, Heading, Text, Box, Image, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { FaPlus } from "react-icons/fa";
 
 const Index = () => {
@@ -14,7 +15,7 @@ const Index = () => {
         <Box boxSize="sm" mx="auto">
           <Image src="/images/recipe-hero.jpg" alt="Delicious food" borderRadius="md" />
         </Box>
-        <Button leftIcon={<FaPlus />} colorScheme="teal" size="lg" alignSelf="center">
+        <Button as={Link} to="/submit-recipe" leftIcon={<FaPlus />} colorScheme="teal" size="lg" alignSelf="center">
           Add Your Recipe
         </Button>
       </VStack>
