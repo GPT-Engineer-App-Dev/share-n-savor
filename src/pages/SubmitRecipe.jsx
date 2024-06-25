@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactStars from "react-rating-stars-component"; // Import ReactStars
 import { Container, VStack, Heading, Input, Textarea, Button, FormControl, FormLabel, Image } from "@chakra-ui/react";
 
 const SubmitRecipe = () => {
@@ -6,6 +7,7 @@ const SubmitRecipe = () => {
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
   const [image, setImage] = useState(null);
+  const [rating, setRating] = useState(0); // Add state for rating
 
   const handleImageChange = (e) => {
     setImage(URL.createObjectURL(e.target.files[0]));
@@ -14,7 +16,7 @@ const SubmitRecipe = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log({ title, ingredients, instructions, image });
+    console.log({ title, ingredients, instructions, image, rating });
   };
 
   return (
@@ -41,6 +43,16 @@ const SubmitRecipe = () => {
               <FormLabel>Image</FormLabel>
               <Input type="file" accept="image/*" onChange={handleImageChange} />
               {image && <Image src={image} alt="Recipe" boxSize="sm" mt={4} />}
+            </FormControl>
+            <FormControl id="rating">
+              <FormLabel>Rating</FormLabel>
+              <ReactStars
+                count={5}
+                onChange={setRating}
+                size={24}
+                activeColor="#ffd700"
+                value={rating}
+              />
             </FormControl>
             <Button type="submit" colorScheme="teal" size="lg" alignSelf="center">
               Submit Recipe
